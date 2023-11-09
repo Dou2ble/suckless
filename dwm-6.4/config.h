@@ -1,7 +1,7 @@
 /* See LICENSE file for copyright and license details. */
 
 /* appearance */
-static const unsigned int borderpx  = 0;        /* border pixel of windows */
+static const unsigned int borderpx  = 1;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 0;        /* 0 means bottom bar */
@@ -15,14 +15,15 @@ static const char *const autostart[] = {
     "wal -Rn", NULL, // theme
     "sh", "-c", "exec xwallpaper --zoom $(cat ~/.cache/wal/wal)", NULL, // wallpaper
     "xcompmgr", NULL, // compositor
-    "slstatus", NULL, // compositor
+    "slstatus", NULL, // status bar
+    "/usr/lib/mate-polkit/polkit-mate-authentication-agent-1", NULL,
     "setxkbmap", "-layout", "us,se", "-variant", "colemak,nodeadkeys", "-option", "grp:rctrl_toggle", NULL,
     "xset", "r", "rate", "300", "100", NULL, // Make keys repeat faster
     NULL /* terminate */
 };
 
 /* tagging */
-static const char *tags[] = { "", "", "", "", "", "", "", "", "", "" };
+static const char *tags[] = { "", "", "", "󰙯", "", "", "", "", "", "" };
 
 static const Rule rules[] = {
     /* xprop(1):
@@ -57,8 +58,10 @@ static const Layout layouts[] = {
     { MODKEY|ControlMask|ShiftMask, KEY,      toggletag,      {.ui = 1 << TAG} },
 
 /* commands */
-static const char *dmenucmd[] = { "dmenu_run", "-fn", dmenufont, NULL };
+// static const char *dmenucmd[] = { "dmenu_run", "-fn", dmenufont, NULL };
+static const char *dmenucmd[] = { "sh", "-c", "source \"${HOME}/.cache/wal/colors.sh\"; dmenu_run -nb \"$color0\" -nf \"$color15\" -sb \"$color1\" -sf \"$color15\"", NULL };
 static const char *termcmd[]  = { "st", NULL };
+static const char *termexcmd[]  = { "tabbed", "-r", "2", "st", "-w", "", NULL };
 static const char *browsercmd[]  = { "chromium", NULL };
 static const char *emacscmd[]  = { "emacs", NULL };
 static const char *lockcmd[]  = { "sh", "-c", "slock -m \"$(screenfetch -N)\"", NULL };
@@ -67,6 +70,7 @@ static const char *lockcmd[]  = { "sh", "-c", "slock -m \"$(screenfetch -N)\"", 
 static const Key keys[] = {
     /* modifier                     key        function        argument */
     { ALTKEY,                       XK_t,      spawn,          {.v = termcmd } },
+    { ALTKEY|ShiftMask,             XK_t,      spawn,          {.v = termexcmd } },
     { ALTKEY,                       XK_space,  spawn,          {.v = dmenucmd } },
     { ALTKEY,                       XK_b,      spawn,          {.v = browsercmd } },
     { ALTKEY,                       XK_e,      spawn,          {.v = emacscmd } },

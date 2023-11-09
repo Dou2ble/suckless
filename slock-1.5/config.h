@@ -2,10 +2,11 @@
 static const char *user  = "otto";
 static const char *group = "otto";
 
+// gruvbox
 static const char *colorname[NUMCOLS] = {
-	[INIT] =   "black",     /* after initialization */
-	[INPUT] =  "#005577",   /* during input */
-	[FAILED] = "#CC3333",   /* wrong password */
+	[INIT] =   "#282828",   /* after initialization */
+	[INPUT] =  "#458588",   /* during input */
+	[FAILED] = "#cc241d",   /* wrong password */
 };
 
 /* treat a cleared input like a wrong password (color) */
@@ -15,7 +16,7 @@ static const int failonclear = 0;
 static const char * message = "Suckless: Software that sucks less.";
 
 /* text color */
-static const char * text_color = "#ffffff";
+static const char * text_color = "#ebdbb2";
 
 /* text size (must be a valid size) */
 // static const char * font_name = "Hack";
