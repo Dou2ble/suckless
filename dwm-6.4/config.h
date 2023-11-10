@@ -23,7 +23,7 @@ static const char *const autostart[] = {
 };
 
 /* tagging */
-static const char *tags[] = { "", "", "", "󰙯", "", "", "", "", "", "" };
+static const char *tags[] = { "", "", "", "", "󰙯", "󰺄", "", "", "", "" };
 
 static const Rule rules[] = {
     /* xprop(1):
@@ -32,7 +32,16 @@ static const Rule rules[] = {
      */
     /* class      instance    title       tags mask     isfloating   monitor */
     { "Gimp",     NULL,       NULL,       0,            1,           -1 },
-    { "Firefox",  NULL,       NULL,       1 << 8,       0,           -1 },
+    { "Emacs",    NULL,       NULL,       1,            0,           -1 },
+    { "Chromium", NULL,       NULL,       1 << 1,       0,           -1 },
+    { "st-256color",NULL,     NULL,       1 << 2,       0,           -1 },
+    { "discord",  NULL,       NULL,       1 << 4,       0,           -1 },
+    { "okular",   NULL,       NULL,       1 << 5,       0,           -1 },
+    { "Zathura",  NULL,       NULL,       1 << 5,       0,           -1 },
+    { "thunderbird",NULL,     NULL,       1 << 6,       0,           -1 },
+    { "firefox",  NULL,       NULL,       1 << 7,       0,           -1 },
+    { "KeePassXC",NULL,       NULL,       1 << 8,       0,           -1 },
+
 };
 
 /* layout(s) */
@@ -59,12 +68,14 @@ static const Layout layouts[] = {
 
 /* commands */
 // static const char *dmenucmd[] = { "dmenu_run", "-fn", dmenufont, NULL };
-static const char *dmenucmd[] = { "sh", "-c", "source \"${HOME}/.cache/wal/colors.sh\"; dmenu_run -nb \"$color0\" -nf \"$color15\" -sb \"$color1\" -sf \"$color15\"", NULL };
+static const char *dmenucmd[] = { "sh", "-c", "source \"${HOME}/.cache/wal/colors.sh\"; dmenu_run -c -l 25 -nb \"$color0\" -nf \"$color15\" -sb \"$color1\" -sf \"$color15\"", NULL };
 static const char *termcmd[]  = { "st", NULL };
 static const char *termexcmd[]  = { "tabbed", "-r", "2", "st", "-w", "", NULL };
 static const char *browsercmd[]  = { "chromium", NULL };
 static const char *emacscmd[]  = { "emacs", NULL };
 static const char *lockcmd[]  = { "sh", "-c", "slock -m \"$(screenfetch -N)\"", NULL };
+
+static const char *documentcmd[]  = { "/home/otto/Scripts/documents.sh", NULL };
 
 
 static const Key keys[] = {
@@ -75,6 +86,7 @@ static const Key keys[] = {
     { ALTKEY,                       XK_b,      spawn,          {.v = browsercmd } },
     { ALTKEY,                       XK_e,      spawn,          {.v = emacscmd } },
     { ALTKEY,                       XK_l,      spawn,          {.v = lockcmd } },
+    { ALTKEY|ShiftMask,             XK_d,      spawn,          {.v = documentcmd } },
     { MODKEY,                       XK_b,      togglebar,      {0} },
     { MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
     { MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
