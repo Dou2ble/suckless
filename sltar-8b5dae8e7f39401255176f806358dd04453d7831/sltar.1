@@ -1,0 +1,25 @@
+.TH sltar 1 sltar\-VERSION
+.SH NAME
+sltar \- simple tar implementation
+.SH SYNOPSIS
+.B sltar
+.RB [ tx ]
+.TP
+.B sltar
+.RB c
+.RB path
+.RB ...
+.SH DESCRIPTION
+sltar is a minimal implementation of tar.
+.SH OPTIONS
+.TP
+.B x
+extract tarball from stdin
+.TP
+.B t
+list all files in tarball from stdin
+.TP
+.B c
+creates tarball from path and prints it to stdout
+.SH BUGS
+Please report any bugs.
