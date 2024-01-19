@@ -86,12 +86,12 @@ battery_icon(const char *bat)
 
 
 static const struct arg args[] = {
-    { battery_icon, "%s", "BAT0" },
-    { battery_perc, "%s%%  ", "BAT0"},
-    { run_command, "%s", "wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{print $3}' | grep -q '[MUTED]' && printf '󰖁 ' || printf '󰕾 '" },
-    { run_command, "%s%%  ", "printf \"$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{print $2}') * 100 / 1 \\n\" | bc"},
-    { run_command, "󰃟 %s  ", "brightnessctl i | awk '/Current brightness/ {print $4}' | tr -d '()'"},
-    { cpu_perc, " %s%%  ", NULL },
-    { ram_used, " %s  ", NULL },
-    { datetime, "󱑎 %s", "%R %F"}
+    { battery_icon, "  %s", "BAT0" },
+    { battery_perc, "%s%%    |", "BAT0"},
+    { run_command, "    %s", "wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{print $3}' | grep -q '[MUTED]' && printf '󰖁 ' || printf '󰕾 '" },
+    { run_command, "%s%%    |", "printf \"$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{print $2}') * 100 / 1 \\n\" | bc"},
+    { run_command, "    󰃟 %s    |", "brightnessctl i | awk '/Current brightness/ {print $4}' | tr -d '()'"},
+    { cpu_perc, "     %s%%    |", NULL },
+    { ram_used, "     %s    |", NULL },
+    { datetime, "    󱑎 %s  ", "%R %F"}
 };
