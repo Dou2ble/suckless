@@ -1,6 +1,3 @@
-#include <stdio.h>
-
-
 /* See LICENSE file for copyright and license details. */
 
 /* interval between updates (in ms) */
@@ -11,7 +8,6 @@ static const char unknown_str[] = "n/a";
 
 /* maximum output string length */
 #define MAXLEN 2048
-
 
 const char *
 battery_icon(const char *bat)
@@ -82,16 +78,9 @@ battery_icon(const char *bat)
  * wifi_essid          WiFi ESSID                      interface name (wlan0)
  * wifi_perc           WiFi signal in percent          interface name (wlan0)
  */
-
-
-
 static const struct arg args[] = {
-    { battery_icon, "  %s", "BAT0" },
-    { battery_perc, "%s%%    |", "BAT0"},
-    { run_command, "    %s", "wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{print $3}' | grep -q '[MUTED]' && printf '󰖁 ' || printf '󰕾 '" },
-    { run_command, "%s%%    |", "printf \"$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{print $2}') * 100 / 1 \\n\" | bc"},
-    { run_command, "    󰃟 %s    |", "brightnessctl i | awk '/Current brightness/ {print $4}' | tr -d '()'"},
-    { cpu_perc, "     %s%%    |", NULL },
-    { ram_used, "     %s    |", NULL },
-    { datetime, "    󱑎 %s  ", "%R %F"}
+	/* function format          argument */
+	{ battery_icon, " %s", "BAT0" },
+	{ battery_perc, "%s%%   ", "BAT0"},
+	{ datetime, "󱑎 %s ", "%R %F"}
 };
