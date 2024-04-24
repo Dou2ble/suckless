@@ -60,10 +60,10 @@ static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() 
 
 /* commands */
 static const char *dmenucmd[] = { "dmenu_run", NULL };
-static const char *termcmd[]  = { "tabbed", "-c", "st", "-w", NULL };
-static const char *browsercmd[]  = { "chromium", NULL };
-static const char *emacscmd[] = { "emacs", NULL };
-static const char *lockcmd[]  = { "slock", NULL };
+// static const char *termcmd[]  = { "tabbed", "-c", "st", "-w", NULL };
+// static const char *browsercmd[]  = { "chromium", NULL };
+// static const char *emacscmd[] = { "emacs", NULL };
+// static const char *lockcmd[]  = { "slock", NULL };
 
 static const char *mutecmd[] = { "/home/otto/Scripts/change-volume.sh", "mute", NULL };
 static const char *volupcmd[] = { "/home/otto/Scripts/change-volume.sh", "up", NULL };
@@ -81,10 +81,10 @@ static const Key keys[] = {
 
 	/* modifier                     key        function        argument */
 	{ ALTKEY,                       XK_space,  spawn,          {.v = dmenucmd } },
-	{ ALTKEY,                       XK_t,      spawn,          {.v = termcmd } },
-	{ ALTKEY,                       XK_e,      spawn,          {.v = emacscmd } },
-	{ ALTKEY,                       XK_b,      spawn,          {.v = browsercmd } },
-	{ ALTKEY,                       XK_l,      spawn,          {.v = lockcmd } },
+	// { ALTKEY,                       XK_t,      spawn,          {.v = termcmd } },
+	// { ALTKEY,                       XK_e,      spawn,          {.v = emacscmd } },
+	// { ALTKEY,                       XK_b,      spawn,          {.v = browsercmd } },
+	// { ALTKEY,                       XK_l,      spawn,          {.v = lockcmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
@@ -125,7 +125,7 @@ static const Button buttons[] = {
 	{ ClkLtSymbol,          0,              Button1,        setlayout,      {0} },
 	{ ClkLtSymbol,          0,              Button3,        setlayout,      {.v = &layouts[2]} },
 	{ ClkWinTitle,          0,              Button2,        zoom,           {0} },
-	{ ClkStatusText,        0,              Button2,        spawn,          {.v = termcmd } },
+	// { ClkStatusText,        0,              Button2,        spawn,          {.v = termcmd } },
 	{ ClkClientWin,         MODKEY,         Button1,        movemouse,      {0} },
 	{ ClkClientWin,         MODKEY,         Button2,        togglefloating, {0} },
 	{ ClkClientWin,         MODKEY,         Button3,        resizemouse,    {0} },
