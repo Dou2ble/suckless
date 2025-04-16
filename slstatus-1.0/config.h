@@ -1,3 +1,6 @@
+#include "slstatus.h"
+#include <stdlib.h>
+
 /* See LICENSE file for copyright and license details. */
 
 /* interval between updates (in ms) */
@@ -8,21 +11,6 @@ static const char unknown_str[] = "n/a";
 
 /* maximum output string length */
 #define MAXLEN 2048
-
-const char *
-battery_icon(const char *bat)
-{
-    const char* state = battery_state(bat);
-
-    if (strcmp(state, "+") == 0) {
-    return "󰢟 ";
-    } else if (strcmp(state, "-") == 0) {
-    return "󰂎 ";
-    } else if (strcmp(state, "o") == 0) {
-    return "󱠵 ";
-    };
-    return "󰂎 ";
-}
 
 /*
  * function            description                     argument (example)
@@ -78,9 +66,22 @@ battery_icon(const char *bat)
  * wifi_essid          WiFi ESSID                      interface name (wlan0)
  * wifi_perc           WiFi signal in percent          interface name (wlan0)
  */
+
+const char *temp_icon(const char *file) {
+  int temperature = atoi(temp(file));
+  if (temperature <= 50) {
+    return "";
+  } else if (temperature < 80) {
+    return "";
+  } else {
+    return "";
+  }
+}
+
 static const struct arg args[] = {
-	/* function format          argument */
-	{ battery_icon, " %s", "BAT0" },
-	{ battery_perc, "%s%%   ", "BAT0"},
-	{ datetime, "󱑎 %s ", "%R %F"}
+    /* function format          argument */
+    {temp_icon, " %s", "/sys/class/thermal/thermal_zone0/temp"},
+    {temp, "%s°C  ", "/sys/class/thermal/thermal_zone0/temp"},
+    {ram_used, "   %s  ", NULL},
+    {datetime, "  󱑎 %s ", "%R %F"},
 };
